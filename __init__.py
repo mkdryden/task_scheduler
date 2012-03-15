@@ -27,6 +27,12 @@ class TaskScheduler(object):
         self.problem.addConstraint(LessThanConstraint, [before, after])
 
     def get_schedule(self):
+        solution = self.problem.getSolution()
+        if solution:
+            return sorted(self.task_names, key=lambda x: solution[x])
+        return None
+
+    def get_schedules(self):
         solutions = sorted(sorted(x.items())
                         for x in self.problem.getSolutions())
         if solutions:
@@ -51,15 +57,15 @@ if __name__ == '__main__':
     else:
         print schedule
 
-    scheduler.reset()
+    #scheduler.reset()
 
     # Schedule B before A
-    scheduler.request_order('B', 'A')
+    #scheduler.request_order('B', 'A')
     # Schedule A before B
-    scheduler.request_order('A', 'B')
+    #scheduler.request_order('A', 'B')
 
-    schedule = scheduler.get_schedule()
-    if not schedule:
-        print 'Could not meet constraints'
-    else:
-        print schedule
+    #schedule = scheduler.get_schedule()
+    #if not schedule:
+        #print 'Could not meet constraints'
+    #else:
+        #print schedule
