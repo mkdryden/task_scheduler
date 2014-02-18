@@ -1,4 +1,4 @@
-from constraint import *
+from .constraint import FunctionConstraint, Problem
 
 
 less_than = lambda x, y: x < y
