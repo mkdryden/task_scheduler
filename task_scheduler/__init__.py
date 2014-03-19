@@ -1,4 +1,4 @@
-from .constraint import FunctionConstraint, Problem
+from .constraint import (FunctionConstraint, Problem, AllDifferentConstraint)
 
 
 less_than = lambda x, y: x < y
@@ -33,8 +33,8 @@ class TaskScheduler(object):
         return None
 
     def get_schedules(self):
-        solutions = sorted(sorted(x.items())
-                        for x in self.problem.getSolutions())
+        solutions = sorted(sorted(x.items()) for x in
+                           self.problem.getSolutions())
         if solutions:
             return [task for task, position in sorted(list(solutions[0]),
                     key=lambda x: x[1])]
