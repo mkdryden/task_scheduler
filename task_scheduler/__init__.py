@@ -17,7 +17,7 @@ class TaskScheduler(object):
 
     def reset(self):
         self.problem.reset()
-        self.problem.addVariables(self.task_names, range(len(self.task_names)))
+        self.problem.addVariables(self.task_names, list(range(len(self.task_names))))
         # Require that only one task is scheduled for each step
         self.problem.addConstraint(AllDifferentConstraint())
 
@@ -53,9 +53,9 @@ if __name__ == '__main__':
 
     schedule = scheduler.get_schedule()
     if not schedule:
-        print 'Could not meet constraints'
+        print('Could not meet constraints')
     else:
-        print schedule
+        print(schedule)
 
     #scheduler.reset()
 
